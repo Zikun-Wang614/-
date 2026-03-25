@@ -1,0 +1,258 @@
+/* 全局样式重置：统一默认样式，消除浏览器差异 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "微软雅黑", sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+ul {
+    list-style: none;
+}
+
+/* 公共按钮样式：所有页面按钮基础样式 */
+.btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* 提交按钮主样式（蓝色） */
+.submit-btn {
+    background-color: #1677ff;
+    color: #fff;
+}
+
+.submit-btn:hover {
+    background-color: #0d66d0;
+}
+
+/* 错误提示文本样式：表单验证用 */
+.error-tip {
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+/* 头部导航栏容器：所有页面通用导航样式 */
+.header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.nav-bar {
+    width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+/* Logo样式 */
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #1677ff;
+}
+
+/* 导航列表 */
+.nav-list {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item a {
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+/* 导航激活状态（首页用） */
+.nav-item.active a {
+    color: #1677ff;
+    font-weight: bold;
+}
+
+/* 下拉菜单容器（首页导航用） */
+.nav-item.has-dropdown {
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    width: 120px;
+    display: none;
+}
+
+.dropdown li a {
+    display: block;
+    padding: 10px 15px;
+}
+
+/* 鼠标悬浮显示下拉菜单 */
+.nav-item.has-dropdown:hover .dropdown {
+    display: block;
+}
+
+/* 主体内容公共容器：所有页面主体居中，统一间距 */
+.main {
+    width: 1200px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* 公共模块容器（表单/留言列表/关于页内容） */
+.section-form, .section-list {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* 模块标题公共样式（左侧蓝色竖线） */
+.section-form h2, .section-list h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    border-left: 4px solid #1677ff;
+    padding-left: 10px;
+}
+
+/* 表单项目公共样式：标签+输入框布局 */
+.form-item {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.form-item label {
+    width: 80px;
+    text-align: right;
+    padding-top: 5px;
+}
+
+.form-item input, .form-item textarea {
+    flex: 1;
+    padding: 8px 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.form-item textarea {
+    resize: none;
+}
+
+/* 留言列表容器样式（首页用） */
+.message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* 单条留言卡片样式（首页用） */
+.message-card {
+    padding: 20px;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+}
+
+.message-card .info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+.message-card .content {
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+/* 公共模态框样式：所有页面的弹窗（成功/编辑/删除）共用 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+/* 模态框遮罩层 */
+.modal-mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+}
+
+/* 模态框内容容器 */
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    width: 500px;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+/* 模态框头部（标题+关闭按钮） */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.modal-header h3 {
+    font-size: 18px;
+}
+
+/* 模态框关闭按钮 */
+.close-modal {
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #666;
+}
+
+.close-modal:hover {
+    color: #000;
+}
+
+/* 页脚公共样式：所有页面页脚统一 */
+.footer {
+    background-color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+    color: #666;
+    font-size: 14px;
+}

@@ -1,0 +1,103 @@
+/* 后台主体容器：与首页主体宽度一致，优化间距 */
+.admin-main {
+    width: 1200px;
+    margin: 30px auto;
+    flex-direction: column;
+    gap: 0; /* 后台仅一个核心模块，无需额外间距 */
+}
+
+/* 后台留言管理模块容器：复用公共容器基础样式，微调内边距 */
+.section-admin {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* 后台模块标题：与首页标题样式统一 */
+.section-admin h2 {
+    margin-bottom: 20px;
+    font-size: 20px;
+    border-left: 4px solid #1677ff;
+    padding-left: 10px;
+}
+
+/* 后台管理表格：全屏宽度，边框合并，居中对齐 */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* 表格表头+单元格：统一边框和内边距 */
+.admin-table th, .admin-table td {
+    padding: 12px 8px;
+    border: 1px solid #e8e8e8;
+}
+
+/* 表头样式：灰色背景，突出区分 */
+.admin-table th {
+    background-color: #fafafa;
+    font-weight: bold;
+    color: #333;
+}
+
+/* 表格行hover效果：提升可读性 */
+.admin-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* 编辑按钮样式：绿色，与提交按钮区分 */
+.edit-btn {
+    background-color: #52c41a;
+    color: #fff;
+    margin-right: 8px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.edit-btn:hover {
+    background-color: #41a814;
+}
+
+/* 删除按钮样式：红色，明确警示 */
+.delete-btn {
+    background-color: #ff4d4f;
+    color: #fff;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.delete-btn:hover {
+    background-color: #d9363e;
+}
+
+/* 取消按钮样式：灰色，次要操作 */
+.cancel-btn {
+    background-color: #666;
+    color: #fff;
+    margin-left: 10px;
+    padding: 6px 12px;
+    font-size: 14px;
+}
+
+.cancel-btn:hover {
+    background-color: #333;
+}
+
+/* 编辑表单样式：适配模态框，与首页表单布局统一 */
+.form-edit .form-item {
+    margin-bottom: 15px;
+}
+
+.form-edit .form-item input,
+.form-edit .form-item textarea {
+    flex: 1;
+    max-width: 400px; /* 限制模态框内输入框宽度，避免溢出 */
+}
+
+/* 隐藏ID输入框：仅用于后台识别，不显示给用户 */
+#editId {
+    display: none;
+}

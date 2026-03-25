@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>简易留言板 - 后台管理</title>
+    <!-- 引入公共样式 + 后台专属样式 -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin-style.css">
+</head>
+<body>
+    <!-- 头部导航栏：与首页风格统一，简化为返回首页/关于我们 -->
+    <header class="header">
+        <nav class="nav-bar">
+            <div class="logo">简易留言板 - 后台管理</div>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html">返回首页</a></li>
+                <li class="nav-item"><a href="about.html">关于我们</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 主体：后台留言管理核心区域（课程要求的增删改查模块） -->
+    <main class="main admin-main">
+        <section class="section-admin">
+            <h2>留言管理</h2>
+            <!-- 留言管理表格：核心展示+操作，后续由JS动态渲染数据 -->
+            <table class="admin-table" id="adminTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>用户名</th>
+                        <th>手机号</th>
+                        <th>留言内容</th>
+                        <th>留言时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 动态渲染区域：后台接口获取数据后填充，无数据时显示提示 -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <!-- 模态框1：编辑留言（点击编辑按钮弹出） -->
+    <div class="modal" id="editModal">
+        <div class="modal-mask"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>编辑留言</h3>
+                <button class="close-modal" id="closeEditModal">×</button>
+            </div>
+            <div class="modal-body">
+                <form class="form-edit" id="editForm">
+                    <!-- 隐藏ID：用于后台识别修改的是哪条留言，不显示给用户 -->
+                    <input type="hidden" id="editId">
+                    <div class="form-item">
+                        <label for="editUsername">用户名：</label>
+                        <input type="text" id="editUsername" name="editUsername" placeholder="请输入用户名" required>
+                    </div>
+                    <div class="form-item">
+                        <label for="editPhone">手机号：</label>
+                        <input type="text" id="editPhone" name="editPhone" placeholder="请输入手机号">
+                    </div>
+                    <div class="form-item">
+                        <label for="editContent">留言内容：</label>
+                        <textarea id="editContent" name="editContent" placeholder="请输入留言内容" required rows="3"></textarea>
+                    </div>
+                    <button type="submit" class="btn submit-btn">保存修改</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 模态框2：确认删除（点击删除按钮弹出，防止误操作） -->
+    <div class="modal" id="deleteModal">
+        <div class="modal-mask"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>确认删除</h3>
+                <button class="close-modal" id="closeDeleteModal">×</button>
+            </div>
+            <div class="modal-body">
+                <p>确定要删除这条留言吗？删除后不可恢复！</p>
+                <button class="btn delete-btn" id="confirmDelete">确认删除</button>
+                <button class="btn cancel-btn" id="cancelDelete">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入JS文件：公共函数 + 后台专属交互逻辑 -->
+    <script src="../js/common.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

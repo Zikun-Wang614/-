@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>通用留言板-完整版</title>
     <style>
+        /* 全局重置 */
         * {
             margin: 0;
             padding: 0;
@@ -13,37 +14,31 @@
         }
 
         body {
-            width: 1920px;
-            height: 1080px;
             background-color: #f5f5f5;
-            margin: 0 auto;
-            position: relative;
+            padding: 20px;
+            line-height: 1.6;
         }
 
+        /* 导航栏 */
         .nav-bar {
-            width: 1920px;
-            height: 60px;
             background-color: #fff;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: absolute;
-            top: 0;
-            left: 0;
+            padding: 15px 20px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 40px;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: bold;
             color: #1677ff;
         }
 
         .nav-menu {
             display: flex;
-            gap: 20px;
-            align-items: center;
+            gap: 15px;
         }
 
         .nav-item {
@@ -53,16 +48,15 @@
         }
 
         .dropdown {
-            width: 120px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             position: absolute;
             top: 60px;
-            right: 120px;
-            padding: 10px 0;
+            right: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 10px;
             display: none;
             flex-direction: column;
-            gap: 10px;
+            gap: 8px;
         }
 
         .dropdown.active {
@@ -70,112 +64,80 @@
         }
 
         .dropdown-item a {
-            font-size: 16px;
             color: #333;
-            padding: 0 15px;
             text-decoration: none;
-            display: block;
+            font-size: 14px;
         }
 
-        .common-container {
-            width: 1200px;
+        /* 通用容器 */
+        .container {
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            padding: 30px;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            padding: 20px;
+            margin-bottom: 20px;
         }
 
         .title {
-            font-size: 20px;
+            font-size: 24px;
             font-weight: bold;
             color: #333;
-            position: relative;
-            padding-left: 15px;
             margin-bottom: 20px;
+            padding-left: 12px;
+            border-left: 4px solid #1677ff;
         }
 
-        .title::before {
-            content: "";
-            width: 4px;
-            height: 20px;
-            background-color: #1677ff;
-            position: absolute;
-            top: 2px;
-            left: 0;
-        }
-
-        .form-container {
-            top: 100px;
-            height: 300px;
-        }
-
+        /* 表单样式 */
         .form-item {
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 20px;
         }
 
         .form-item label {
+            width: 80px;
             font-size: 16px;
             color: #333;
-            width: 80px;
             text-align: right;
         }
 
         .form-item input,
         .form-item textarea {
-            width: 300px;
-            height: 36px;
+            flex: 1;
+            padding: 8px 10px;
             border: 1px solid #e8e8e8;
             border-radius: 4px;
-            padding: 0 10px;
             font-size: 14px;
+            max-width: 400px;
         }
 
         .form-item textarea {
-            width: 500px;
             height: 80px;
-            padding: 10px;
             resize: none;
         }
 
         .submit-btn {
-            width: 100px;
-            height: 36px;
             background-color: #1677ff;
             color: #fff;
-            font-size: 16px;
-            border-radius: 4px;
             border: none;
-            margin-left: 90px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-size: 16px;
             cursor: pointer;
+            margin-left: 90px;
         }
 
         .submit-btn:hover {
             background-color: #0d66d0;
         }
 
-        .error-tip {
-            font-size: 12px;
-            color: #ff4d4f;
-            margin-left: 10px;
-        }
-
-        .message-list-container {
-            top: 440px;
-            height: 400px;
-        }
-
+        /* 留言列表 */
         .message-card {
-            width: 100%;
             border: 1px solid #e8e8e8;
             border-radius: 4px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 15px;
+            margin-bottom: 15px;
         }
 
         .card-info {
@@ -183,35 +145,21 @@
             justify-content: space-between;
             font-size: 14px;
             color: #666;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
 
         .card-info .username {
             font-size: 16px;
-            color: #333;
             font-weight: 500;
+            color: #333;
         }
 
         .card-content {
-            font-size: 16px;
+            font-size: 15px;
             color: #333;
-            line-height: 1.8;
         }
 
-        .footer {
-            width: 1920px;
-            height: 60px;
-            background-color: #fff;
-            position: absolute;
-            top: 880px;
-            left: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: #666;
-        }
-
+        /* 模态框 */
         .modal {
             display: none;
             position: fixed;
@@ -219,32 +167,24 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 999;
-        }
-
-        .modal-mask {
-            position: absolute;
-            width: 100%;
-            height: 100%;
             background-color: rgba(0,0,0,0.5);
+            z-index: 999;
+            align-items: center;
+            justify-content: center;
         }
 
         .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             background-color: #fff;
-            width: 400px;
             border-radius: 8px;
             padding: 20px;
+            width: 300px;
         }
 
         .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             padding-bottom: 10px;
             border-bottom: 1px solid #e8e8e8;
         }
@@ -254,25 +194,22 @@
         }
 
         .close-modal {
-            border: none;
             background: none;
+            border: none;
             font-size: 20px;
             cursor: pointer;
             color: #666;
         }
 
-        .close-modal:hover {
-            color: #000;
-        }
-
         .modal-body p {
+            text-align: center;
             font-size: 16px;
             color: #333;
-            text-align: center;
         }
     </style>
 </head>
 <body>
+    <!-- 导航栏 -->
     <div class="nav-bar">
         <div class="logo">通用留言板</div>
         <div class="nav-menu">
@@ -285,13 +222,13 @@
         </div>
     </div>
 
-    <div class="form-container common-container">
+    <!-- 我要留言 -->
+    <div class="container">
         <div class="title">我要留言</div>
         <form id="messageForm">
             <div class="form-item">
                 <label for="username">用户名：</label>
                 <input type="text" id="username" placeholder="请输入用户名" required>
-                <div class="error-tip" id="usernameTip"></div>
             </div>
             <div class="form-item">
                 <label for="phone">手机号：</label>
@@ -300,22 +237,19 @@
             <div class="form-item">
                 <label for="content">留言内容：</label>
                 <textarea id="content" placeholder="请输入留言内容" required></textarea>
-                <div class="error-tip" id="contentTip"></div>
             </div>
             <button type="submit" class="submit-btn">提交留言</button>
         </form>
     </div>
 
-    <div class="message-list-container common-container">
+    <!-- 留言列表 -->
+    <div class="container">
         <div class="title">留言列表</div>
-        <!-- 动态留言区域 -->
         <div id="messageList"></div>
     </div>
 
-    <div class="footer">©2026 通用留言板 - Web综合设计实践课程作业</div>
-
+    <!-- 成功弹窗 -->
     <div class="modal" id="successModal">
-        <div class="modal-mask"></div>
         <div class="modal-content">
             <div class="modal-header">
                 <h3>操作成功</h3>
@@ -328,7 +262,7 @@
     </div>
 
     <script>
-        // 更多下拉菜单
+        // 1. 下拉菜单交互
         const moreBtn = document.getElementById('moreBtn');
         const dropdownMenu = document.getElementById('dropdownMenu');
         
@@ -342,50 +276,46 @@
             }
         });
 
-        // 格式化时间
+        // 2. 格式化时间
         function formatTime(timestamp) {
             const date = new Date(timestamp);
             const pad = num => num.toString().padStart(2, '0');
             return `${date.getFullYear()}-${pad(date.getMonth()+1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`;
         }
 
-        // 加载留言列表（从后台获取）
+        // 3. 加载留言列表（从 localStorage 读取）
         function loadMessages() {
-            fetch('http://localhost:3000/api/getMessage')
-            .then(res => res.json())
-            .then(data => {
-                const list = document.getElementById('messageList');
-                list.innerHTML = '';
+            const list = document.getElementById('messageList');
+            list.innerHTML = '';
+            const messages = JSON.parse(localStorage.getItem('messages') || '[]');
 
-                if (data.data.length === 0) {
-                    list.innerHTML = '<p style="text-align:center;color:#666">暂无留言</p>';
-                    return;
-                }
+            if (messages.length === 0) {
+                list.innerHTML = '<p style="text-align:center;color:#666;padding:20px;">暂无留言，快来发表第一条吧！</p>';
+                return;
+            }
 
-                data.data.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'message-card';
-                    card.innerHTML = `
-                        <div class="card-info">
-                            <span class="username">用户名：${item.username}</span>
-                            <span>留言时间：${formatTime(item.id)}</span>
-                        </div>
-                        ${item.phone ? `<div class="card-info"><span>手机号：${item.phone}</span></div>` : ''}
-                        <div class="card-content">${item.content}</div>
-                    `;
-                    list.appendChild(card);
-                });
+            messages.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'message-card';
+                card.innerHTML = `
+                    <div class="card-info">
+                        <span class="username">用户名：${item.username}</span>
+                        <span>留言时间：${formatTime(item.id)}</span>
+                    </div>
+                    ${item.phone ? `<div class="card-info"><span>手机号：${item.phone}</span></div>` : ''}
+                    <div class="card-content">${item.content}</div>
+                `;
+                list.appendChild(card);
             });
         }
 
-        // 页面加载就显示留言
+        // 页面加载时自动加载留言
         window.onload = loadMessages;
 
-        // 表单提交
+        // 4. 表单提交（保存到 localStorage）
         const messageForm = document.getElementById('messageForm');
         const successModal = document.getElementById('successModal');
         const closeModal = document.getElementById('closeModal');
-        const modalMask = successModal.querySelector('.modal-mask');
 
         messageForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -398,29 +328,35 @@
                 return;
             }
 
-            fetch('http://localhost:3000/api/submitMessage', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ username, phone, content })
-            })
-            .then(res => res.json())
-            .then(data => {
-                if (data.code === 200) {
-                    successModal.style.display = 'block';
-                    messageForm.reset();
-                    loadMessages(); // 提交后刷新留言列表
-                } else {
-                    alert('提交失败');
-                }
-            });
+            // 构造新留言对象
+            const newMessage = {
+                id: Date.now(), // 用时间戳作为唯一ID
+                username: username,
+                phone: phone,
+                content: content
+            };
+
+            // 读取现有留言，添加新留言后保存
+            const messages = JSON.parse(localStorage.getItem('messages') || '[]');
+            messages.push(newMessage);
+            localStorage.setItem('messages', JSON.stringify(messages));
+
+            // 显示成功弹窗、清空表单、刷新列表
+            successModal.style.display = 'flex';
+            messageForm.reset();
+            loadMessages();
         });
 
+        // 5. 关闭弹窗
         closeModal.addEventListener('click', () => {
             successModal.style.display = 'none';
         });
-        modalMask.addEventListener('click', () => {
-            successModal.style.display = 'none';
-        });
-    </script>
-</body>
+
+        successModal.addEventListener('click', (e) => {
+            if (e.target === successModal) {
+                 successModal.style.display = 'none';
+             }
+         });
+     </script>
+ </body>
 </html>
